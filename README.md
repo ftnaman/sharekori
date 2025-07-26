@@ -1,68 +1,112 @@
-# Share Koro
+# BharaKoro
 
-**Share Koro** is a full-stack web service that enables individuals within a neighborhood or community to **lend and borrow physical items** across a variety of categories—such as tools, books, appliances, electronics, and household items. The platform is designed to promote resource efficiency, reduce waste, and foster a sense of trust and cooperation among users.
-
-Essentially, Share Koro functions as a **peer-to-peer rental and lending system**, where users can:
-- List their personal items for others to borrow
-- Browse available items by category or keyword
-- Book items for specific dates
-- Rate and review lending experiences
-- Track item condition and history
-- Handle transactions securely, with refund and platform fee mechanisms built in
-
-By combining a user-friendly interface with powerful backend functionality, Share Koro offers a sustainable and community-driven alternative to buying infrequently used items. It is particularly useful for densely populated areas, student housing, or small local communities where shared ownership can significantly reduce both cost and clutter.
+**BharaKoro** is a web platform where individuals can **lend, rent, and borrow physical items** like tools, electronics, and household goods. It supports both **Peer-to-Peer (P2P)** and **Vendor-driven** models with platform fees and strong risk control. The aim is to promote **shared usage**, **sustainability**, and **neighborhood trust** while maintaining **commercial viability**.
 
 ---
 
-## Features
+## 🔹 Overview of Business Model
 
-### Core Functionalities
-
-- **Item Reservation System**: Prevents double-booking through conflict detection based on reservation dates.
-- **Condition History Log**: Tracks item condition before and after every loan cycle.
-- **Borrower Rating System**: Users can rate each other after each transaction to ensure transparency.
-- **Auto-Return Reminders**: Sends email alerts before the due return date.
-- **Item Categories and Tagging**: Enables advanced search and filtering by type, tag, or keyword.
-- **Availability Calendar**: Displays a calendar view of when an item is booked or available.
-- **Damage or Loss Reporting**: Allows users to report any issues related to item damage or loss.
-- **Shared Ownership Support**: Multiple users can co-own and manage an item listing.
-- **Delivery and Condition Checking**: Includes a delivery log and condition verification both upon sending and receiving an item.
-- **Refund and Compensation System**: Offers a refund policy in case of theft or significant damage by the borrower.
-- **Platform Fee System**: Allows the platform to charge a small service fee per transaction to support operations.
-
-### AI-Powered Enhancements (Ollama Integration)
-
-- **LLM-Powered Review Analysis**: Reviews are analyzed locally using open-source LLMs (such as LLaMA2 or Mistral) via Ollama to extract sentiment, generate summaries, and classify feedback.
-- **Borrower and Lender Trust Scores**: Dynamic reliability scores are generated for users based on previous reviews and extracted patterns to guide safer transactions.
-
-### Additional Useful Features
-
-- **Waitlist System**: Users can join a waitlist for items that are currently reserved and will be notified when the item becomes available.
-- **Multi-Item Booking**: Users can reserve multiple items in a single transaction.
-- **User Profile Management**: Users can update their contact details and view their full borrowing and lending history.
-- **Simple Search Bar**: Allows quick text-based searching across item titles and tags.
-- **Reservation Cancellation**: Bookings can be canceled within the platform with appropriate status updates.
-- **Responsive Design**: Fully responsive UI optimized for both desktop and mobile devices.
-- **Basic Notifications**: Alerts and updates are sent for new bookings, returns, waitlist availability, and system messages.
-- **Admin Dashboard**: An internal dashboard for managing users, listings, reports, flagged content, and platform fees.
-- **Secure Payment Integration**: Integrates with SSLCommerz (or other Bangladeshi payment gateways) to handle deposits or advance rental payments.
+| Model Type     | Description                                 | Platform Fee | Risk Management                                                                 |
+|----------------|---------------------------------------------|--------------|----------------------------------------------------------------------------------|
+| **P2P**        | Individuals lend to other individuals.      | 5–10%        | 60% of item value as caution money held by BharaKoro. Remaining 40% is user risk. |
+| **Vendor-based** | Verified vendors rent items commercially. | 12–15%       | Vendor bears full risk; platform is not liable.                                  |
 
 ---
 
-## Technology Stack
+## ✅ Platform Highlights
 
-| Layer           | Technology                               |
-|----------------|-------------------------------------------|
-| Frontend        | React.js                                 |
-| Backend         | Node.js with Express                     |
-| Database        | PostgreSQL (hosted on Supabase)          |
-| Email System    | Nodemailer with Node-Cron                |
-| Payment Gateway | SSLCommerz or equivalent (Bangladesh)    |
-| AI/NLP Engine   | Ollama (local LLM runner)                |
-| Hosting         | Supabase (Database), Vercel/Render (Web/API) |
+- **Hybrid System**: Supports both P2P and vendor rentals.
+- **Platform Fees**: Charged based on lender type.
+- **Risk Mitigation**:
+  - **Caution Money** (60%) taken from P2P borrowers.
+  - **Vendor-only** listings allowed for high-risk/high-value items.
+- **Tiered Lending**:
+  - **Low-value items**: P2P permitted.
+  - **High-value items**: Vendor-only.
+- **Verification**: Identity checks and item verification before listing.
+- **Secure Transactions**: Admin-mediated returns, deposits, and disputes.
 
 ---
 
-## Local AI Integration with Ollama
+## 🎯 Features
 
-This project uses [Ollama](https://ollama.com/) to run open-source large language models locally for free.
+| Feature                    | Description                                                               |
+|----------------------------|---------------------------------------------------------------------------|
+| **Item Listing**           | Users and vendors can list rentable items by category and price.          |
+| **Reservation System**     | Prevents booking conflicts and supports calendar-based rentals.           |
+| **Caution Money System**   | 60% of item value locked for P2P rentals.                                 |
+| **Return Tracking**        | Admin and user ratings used to monitor return quality and timing.         |
+| **Review & Rating System** | Feedback on lenders and borrowers improves reliability.                   |
+| **Waitlists**              | Join a queue for high-demand items.                                       |
+| **Notifications**          | Email reminders for return dates and due payments.                        |
+| **Admin Dashboard**        | Manage users, items, payments, and disputes.                              |
+
+---
+
+## 🔍 Tiered Lending Model
+
+| Tier   | Item Value Range | Available To | Notes                          |
+|--------|------------------|--------------|--------------------------------|
+| Tier 1 | ৳0 – ৳1000        | P2P          | No or minimal caution (30%).   |
+| Tier 2 | ৳1001 – ৳3000     | P2P          | Full 60% caution applied.      |
+| Tier 3 | ৳3001+            | Vendor Only  | P2P not allowed due to risk.   |
+
+---
+
+## 🔐 Safety & Risk Management
+
+| Safety Feature         | Description                                                      |
+|------------------------|------------------------------------------------------------------|
+| **Caution Money**      | 60% of item value held during P2P rental.                        |
+| **Verification**       | NID/Student ID required for lenders and renters.                |
+| **Item Checks**        | Condition reviewed before and after rental.                      |
+| **AI Risk Detection**  | Reviews and behavior monitored for abuse.                        |
+| **Vendor Liability**   | Vendors are responsible for lost/damaged items.                  |
+| **Admin Oversight**    | Admin panel for dispute resolution and arbitration.              |
+
+---
+
+## 📊 Monetization Model
+
+| User Type   | Platform Fee | Revenue Stream                                           |
+|-------------|--------------|-----------------------------------------------------------|
+| **P2P User**| 5–10%        | Transaction fee + interest from caution deposits (if held)|
+| **Vendor**  | 12–15%       | Transaction fee on rentals                                |
+
+---
+
+## 🧠 Smart Features (AI-Enhanced)
+
+- **User Behavior Analysis**: Generates reliability score.
+- **Item Popularity Metrics**: Highlights trending items.
+- **Review Summarization**: AI condenses reviews for fast insight.
+
+---
+
+## 🏗️ Tech Stack
+
+| Layer       | Tech Used            |
+|-------------|----------------------|
+| Frontend    | React.js             |
+| Backend     | Node.js (Express)    |
+| Database    | PostgreSQL (Supabase)|
+| AI Layer    | Ollama (LLaMA2/Mistral) |
+| Auth        | Supabase Auth        |
+| Email       | Nodemailer + Node-Cron|
+| Payment     | SSLCommerz or Stripe |
+| Hosting     | Vercel (frontend), Render (backend), Supabase (database) |
+
+---
+
+## 🛠️ Getting Started (Dev Mode)
+
+```bash
+# Frontend
+cd client
+npm install
+npm run dev
+
+# Backend
+cd server
+npm install
+npm run dev
