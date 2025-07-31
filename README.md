@@ -1,112 +1,122 @@
-# BharaKoro
+# ShareKori
 
-**BharaKoro** is a web platform where individuals can **lend, rent, and borrow physical items** like tools, electronics, and household goods. It supports both **Peer-to-Peer (P2P)** and **Vendor-driven** models with platform fees and strong risk control. The aim is to promote **shared usage**, **sustainability**, and **neighborhood trust** while maintaining **commercial viability**.
-
----
-
-## 🔹 Overview of Business Model
-
-| Model Type     | Description                                 | Platform Fee | Risk Management                                                                 |
-|----------------|---------------------------------------------|--------------|----------------------------------------------------------------------------------|
-| **P2P**        | Individuals lend to other individuals.      | 5–10%        | 60% of item value as caution money held by BharaKoro. Remaining 40% is user risk. |
-| **Vendor-based** | Verified vendors rent items commercially. | 12–15%       | Vendor bears full risk; platform is not liable.                                  |
+**ShareKori** is a modern web platform that enables individuals and vendors to **lend, borrow, and rent physical items**—including tools, electronics, and everyday household goods. It supports both **Peer-to-Peer (P2P)** and **Vendor-driven** models, promoting sustainability, circular economy, and community trust.
 
 ---
 
-## ✅ Platform Highlights
+## 🧭 Table of Contents
 
-- **Hybrid System**: Supports both P2P and vendor rentals.
-- **Platform Fees**: Charged based on lender type.
-- **Risk Mitigation**:
-  - **Caution Money** (60%) taken from P2P borrowers.
-  - **Vendor-only** listings allowed for high-risk/high-value items.
-- **Tiered Lending**:
-  - **Low-value items**: P2P permitted.
-  - **High-value items**: Vendor-only.
-- **Verification**: Identity checks and item verification before listing.
-- **Secure Transactions**: Admin-mediated returns, deposits, and disputes.
-
----
-
-## 🎯 Features
-
-| Feature                    | Description                                                               |
-|----------------------------|---------------------------------------------------------------------------|
-| **Item Listing**           | Users and vendors can list rentable items by category and price.          |
-| **Reservation System**     | Prevents booking conflicts and supports calendar-based rentals.           |
-| **Caution Money System**   | 60% of item value locked for P2P rentals.                                 |
-| **Return Tracking**        | Admin and user ratings used to monitor return quality and timing.         |
-| **Review & Rating System** | Feedback on lenders and borrowers improves reliability.                   |
-| **Waitlists**              | Join a queue for high-demand items.                                       |
-| **Notifications**          | Email reminders for return dates and due payments.                        |
-| **Admin Dashboard**        | Manage users, items, payments, and disputes.                              |
+- [📦 ShareKori](#-sharekori)
+- [🧭 Table of Contents](#-table-of-contents)
+- [🚀 Overview](#-overview)
+- [💼 Business Model](#-business-model)
+- [🌟 Features](#-features)
+- [📊 Tiered Lending Rules](#-tiered-lending-rules)
+- [🔐 Safety & Risk Control](#-safety--risk-control)
+- [💰 Monetization](#-monetization)
+- [🧠 Smart AI Features](#-smart-ai-features)
+- [🧱 Tech Stack](#-tech-stack)
+- [🛠️ Getting Started (Dev Mode)](#️-getting-started-dev-mode)
+- [📫 Contact](#-contact)
 
 ---
 
-## 🔍 Tiered Lending Model
+## 🚀 Overview
 
-| Tier   | Item Value Range | Available To | Notes                          |
-|--------|------------------|--------------|--------------------------------|
-| Tier 1 | ৳0 – ৳1000        | P2P          | No or minimal caution (30%).   |
-| Tier 2 | ৳1001 – ৳3000     | P2P          | Full 60% caution applied.      |
-| Tier 3 | ৳3001+            | Vendor Only  | P2P not allowed due to risk.   |
-
----
-
-## 🔐 Safety & Risk Management
-
-| Safety Feature         | Description                                                      |
-|------------------------|------------------------------------------------------------------|
-| **Caution Money**      | 60% of item value held during P2P rental.                        |
-| **Verification**       | NID/Student ID required for lenders and renters.                |
-| **Item Checks**        | Condition reviewed before and after rental.                      |
-| **AI Risk Detection**  | Reviews and behavior monitored for abuse.                        |
-| **Vendor Liability**   | Vendors are responsible for lost/damaged items.                  |
-| **Admin Oversight**    | Admin panel for dispute resolution and arbitration.              |
+| Platform Type | Description                                      |
+|---------------|--------------------------------------------------|
+| **Hybrid**    | Supports P2P rentals and commercial vendor listings. |
+| **Secure**    | Identity verification, admin-monitored returns.  |
+| **Flexible**  | Tiered item lending based on value and risk.     |
 
 ---
 
-## 📊 Monetization Model
+## 💼 Business Model
 
-| User Type   | Platform Fee | Revenue Stream                                           |
-|-------------|--------------|-----------------------------------------------------------|
-| **P2P User**| 5–10%        | Transaction fee + interest from caution deposits (if held)|
-| **Vendor**  | 12–15%       | Transaction fee on rentals                                |
-
----
-
-## 🧠 Smart Features (AI-Enhanced)
-
-- **User Behavior Analysis**: Generates reliability score.
-- **Item Popularity Metrics**: Highlights trending items.
-- **Review Summarization**: AI condenses reviews for fast insight.
+| Model Type     | Description                                 | Platform Fee | Risk Handling                                                                 |
+|----------------|---------------------------------------------|--------------|--------------------------------------------------------------------------------|
+| **Peer-to-Peer** | Individual-to-individual rentals           | 5–10%        | 60% caution money collected by platform; user bears remaining 40%.            |
+| **Vendor-Based** | Commercial vendors list for rent           | 12–15%       | Vendor assumes full risk; platform acts as facilitator.                      |
 
 ---
 
-## 🏗️ Tech Stack
+## 🌟 Features
 
-| Layer       | Tech Used            |
-|-------------|----------------------|
-| Frontend    | React.js             |
-| Backend     | Node.js (Express)    |
-| Database    | PostgreSQL (Supabase)|
-| AI Layer    | Ollama (LLaMA2/Mistral) |
-| Auth        | Supabase Auth        |
-| Email       | Nodemailer + Node-Cron|
-| Payment     | SSLCommerz or Stripe |
-| Hosting     | Vercel (frontend), Render (backend), Supabase (database) |
+| Feature Name             | Description                                                                 |
+|--------------------------|-----------------------------------------------------------------------------|
+| **Item Listing**         | Users/vendors list items by category, photo, and pricing.                  |
+| **Reservation System**   | Prevents overlaps via calendar booking.                                    |
+| **Caution Money System** | Collects refundable deposit for P2P transactions (up to 60% item value).   |
+| **Admin Return Checks**  | Admin validates return quality, handles disputes.                          |
+| **Review & Rating**      | 2-way feedback system for transparency and trust.                          |
+| **Waitlists**            | Users can join queues for high-demand items.                              |
+| **Email Notifications**  | Return due alerts, confirmations, and platform updates.                   |
+| **Admin Dashboard**      | Central control panel for managing users, disputes, payments, and listings.|
+
+---
+
+## 📊 Tiered Lending Rules
+
+| Tier   | Item Value       | Who Can List     | Caution Policy             |
+|--------|------------------|------------------|-----------------------------|
+| Tier 1 | ৳0 – ৳1000        | P2P              | 30% caution (minimal risk)  |
+| Tier 2 | ৳1001 – ৳3000     | P2P              | Full 60% caution applied    |
+| Tier 3 | ৳3001+            | Vendors Only     | P2P not allowed             |
+
+---
+
+## 🔐 Safety & Risk Control
+
+| Feature               | Description                                                             |
+|------------------------|-------------------------------------------------------------------------|
+| **Caution Money**      | Held securely during transaction (up to 60%)                            |
+| **User Verification**  | NID, Passport, or Student ID required before borrowing/lending          |
+| **Item Inspection**    | Photo verification and condition check pre/post rental                 |
+| **AI Risk Flags**      | Monitors fraud patterns, suspicious behaviors                          |
+| **Vendor Liability**   | Vendors must insure or accept risk of item damage/loss                  |
+| **Dispute Resolution** | Admin arbitration and logs of communication                            |
+
+---
+
+## 💰 Monetization
+
+| User Type   | Platform Fee | Revenue Sources                                      |
+|-------------|--------------|------------------------------------------------------|
+| P2P User    | 5–10%        | Transaction fee + caution deposit float              |
+| Vendor      | 12–15%       | Fee per rental transaction                          |
+
+---
+
+## 🧠 Smart AI Features
+
+| AI Feature               | Purpose                                                        |
+|--------------------------|----------------------------------------------------------------|
+| **Reliability Score**    | Tracks user history and flags untrustworthy behavior           |
+| **Trending Items**       | Highlights most-rented items and seasonal popularity           |
+| **Review Summarization** | AI-generated summaries of item and user feedback               |
+
+---
+
+## 🧱 Tech Stack
+
+| Layer       | Technology                   |
+|-------------|------------------------------|
+| **Frontend**| React.js                     |
+| **Backend** | Node.js (Express)            |
+| **Database**| PostgreSQL (via Supabase)    |
+| **Auth**    | Supabase Auth                |
+| **Email**   | Nodemailer + Node-Cron       |
+| **AI Layer**| Ollama (LLaMA2 / Mistral)    |
+| **Payments**| SSLCommerz (BD) / Stripe     |
+| **Hosting** | Vercel (Frontend), Render (API), Supabase (DB) |
 
 ---
 
 ## 🛠️ Getting Started (Dev Mode)
 
-```bash
-# Frontend
-cd client
-npm install
-npm run dev
+### 🚧 Frontend
 
-# Backend
-cd server
+```bash
+cd client
 npm install
 npm run dev
