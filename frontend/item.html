@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sharekori - Item Details</title>
+  <link rel="stylesheet" href="item.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">sharekori</div>
+    <nav>
+      <a href="homepage.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <!-- Item Details Section -->
+  <section class="item-section">
+    <div id="itemContainer" class="item-details"></div>
+
+    <!-- Rent Form -->
+    <form id="rentForm" class="rent-form">
+      <h3>Rent This Item</h3>
+      <label for="startDate">Start Date:</label>
+      <input type="date" id="startDate" required>
+      <label for="endDate">End Date:</label>
+      <input type="date" id="endDate" required>
+      <button type="submit">Rent Now</button>
+    </form>
+  </section>
+
+  <script src="item.js"></script>
+</body>
+</html>

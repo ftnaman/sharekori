@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sharekori - Home</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>sharekori</h1>
+    <nav>
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+      <a href="dashboard.html">Dashboard</a>
+    </nav>
+  </header>
+
+  <!-- Search Section -->
+  <section class="search-section">
+    <h2 id="typewriter">Find Items to Rent</h2>
+    <form id="searchForm">
+      <input type="text" id="searchKeyword" placeholder="Search by keyword">
+      <select id="searchCategory">
+        <option value="">All Categories</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Equipment">Equipment</option>
+        <option value="Furniture">Furniture</option>
+        <option value="Vehicles">Vehicles</option>
+        <option value="Books & Media">Books & Media</option>
+      </select>
+      <select id="searchCondition">
+        <option value="">Any Condition</option>
+        <option value="Almost New">Almost New</option>
+        <option value="Used">Used</option>
+        <option value="Refurbished">Refurbished</option>
+      </select>
+      <button type="submit">Search</button>
+    </form>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured-products">
+    <h2>Featured Products</h2>
+    <div id="featuredContainer" class="products-grid"></div>
+  </section>
+
+  <script src="homepage.js"></script>
+</body>
+</html>

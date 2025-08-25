@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <header>
+    <a href="homepage.html"><h1>sharekori</h1></a>
+    <div id="welcomeMessage"></div>
+    <button id="logoutBtn">Logout</button>
+  </header>
+
+  <main class="dashboard-container">
+    <!-- Add Item Form -->
+    <section class="add-item">
+      <h2>Rent More Items</h2>
+      <form id="addItemForm" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="Item Title" required>
+        <textarea name="item_description" placeholder="Item Description"></textarea>
+        <input type="number" step="5" name="rent_per_day" placeholder="Rent per day (৳)" required>
+        <div class="form-row">
+  <label for="item_condition">Condition:</label>
+  <select name="item_condition" id="item_condition">
+    <option value="Almost New">Almost New</option>
+    <option value="Used" selected>Used</option>
+    <option value="Refurbished">Refurbished</option>
+  </select>
+</div>
+
+<div class="form-row">
+  <label for="category">Category:</label>
+  <select name="category" id="category" required>
+    <option value="">Select Category</option>
+    <option value="Electronics">Electronics</option>
+    <option value="Equipment">Equipment</option>
+    <option value="Furniture">Furniture</option>
+    <option value="Vehicles">Vehicles</option>
+    <option value="Books & Media">Books & Media</option>
+  </select>
+</div>
+
+        <input type="text" name="location" placeholder="Location" required>
+        <input type="file" name="image" accept="image/*">
+        <button type="submit">Add Item</button>
+      </form>
+    </section>
+
+    <!-- Items List -->
+    <section class="items-list">
+      <h2>Your Items Up For Rent</h2>
+      <div id="itemsContainer"></div>
+    </section>
+  </main>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

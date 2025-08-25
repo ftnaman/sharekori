@@ -1,0 +1,144 @@
+/* General Page */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #fff;
+  color: #000;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-family: sans-serif;
+}
+
+header nav a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #333;
+}
+
+/* Search section */
+.search-section {
+  padding: 2rem;
+  text-align: center;
+  background-color: #f7f7f7;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.search-section input,
+.search-section select {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+}
+
+.search-section button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+.featured-products {
+  padding: 2rem;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+/* Item card */
+.item-card {
+  width: 100%;
+  max-width: 250px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.item-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Image styling with fixed height */
+.item-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.item-info {
+  padding: 12px;
+}
+
+.item-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center;
+}
+
+/* Rent & condition side by side */
+.item-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Rent box */
+.item-rent {
+  flex: 1;
+  background: #e6f7ff;
+  color: #0077b6;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Condition box */
+.item-condition {
+  flex: 1;
+  background: #fef4e7;
+  color: #e67e22;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#typewriter {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  display: inline-block;
+  border-right: 2px solid #333;
+  padding-right: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  min-height: 1.3em; /* reserve vertical space so it doesn’t shrink */
+}
