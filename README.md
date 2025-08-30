@@ -208,9 +208,8 @@ CREATE TABLE ratings (
     FOREIGN KEY (owner_id) REFERENCES users(id),
     FOREIGN KEY (rater_id) REFERENCES users(id)
 );
+
 ```
-<img width="635" height="359" alt="image" src="https://github.com/user-attachments/assets/cb39bcc6-01ed-4833-81dc-625d4a614a74" />
----
 ## API Documentation
 
 ### Authentication Endpoints
