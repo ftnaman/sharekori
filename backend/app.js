@@ -5,7 +5,10 @@ require('dotenv').config();
 const path = require('path');
 const userRoutes = require('./routes/userRoutes');
 const itemRoutes = require('./routes/itemRoutes');
-const rentalRoutes = require('./routes/rentalRoutes');
+const rentalRoutes = require("./routes/rentalRoutes");
+const ratingRoutes = require('./routes/ratingRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 
 const app = express();
 
@@ -23,7 +26,10 @@ app.get("/", (req, res) => {
 //routes
 app.use('/api/users', userRoutes);
 app.use('/api/items', itemRoutes);
-app.use('/api/rentals', rentalRoutes);
+app.use("/api/rentals", rentalRoutes);
+app.use('/api/ratings', ratingRoutes);
+app.use('/api/reviews', reviewRoutes);
+app.use('/api/payments', paymentRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, '0.0.0.0', () => {
