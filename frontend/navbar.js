@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <nav class="navbar navbar-expand-lg sk-navbar bg-white">
       <div class="container">
         <a class="navbar-brand fw-bold" href="homepage.html">
-          <img src="sharekori_logo.png" alt="sharekori" style="height:52px;vertical-align:middle">
+          <img src="images/sharekori_logo.png" alt="sharekori" style="height:52px;vertical-align:middle">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#skNav"
