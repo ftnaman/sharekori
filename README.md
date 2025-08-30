@@ -71,7 +71,6 @@ sharekori/
 │   ├── database.js
 │   └── package.json
 ├── frontend/
-│   ├── components/
 │   ├── *.html (pages)
 │   ├── *.js (scripts)
 │   ├── *.css (styles)
