@@ -11,13 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
       const password = document.getElementById('password').value;
 
       try {
         const res = await fetch('/api/users/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, password })
+          body: JSON.stringify({ name, email, phone, password })
         });
 
         const data = await res.json();

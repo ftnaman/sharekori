@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sharekori - Home</title>
+  <title>Browse Items - ShareKori</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="navbar.css">
@@ -11,10 +11,10 @@
 <body>
   <!-- Navbar Container -->
   <div id="navbar-container"></div>
-
+  
   <!-- Search Section -->
   <section class="search-section">
-    <h2 id="typewriter">Find Items to Rent</h2>
+    <h2>Browse Items</h2>
     <form id="searchForm" class="unified-search">
       <div class="search-container">
         <input type="text" id="searchKeyword" placeholder="Search for items to rent...">
@@ -28,19 +28,36 @@
             <option value="Books & Media">Books & Media</option>
           </select>
         </div>
+        <div class="search-dropdown">
+          <select id="searchCondition">
+            <option value="">Any Condition</option>
+            <option value="Almost New">Almost New</option>
+            <option value="Used">Used</option>
+            <option value="Refurbished">Refurbished</option>
+          </select>
+        </div>
         <button type="submit">Search</button>
       </div>
     </form>
   </section>
 
-  <!-- Featured Products -->
+  <!-- Results Section -->
   <section class="featured-products">
-    <h2>Featured Products</h2>
-    <div id="featuredContainer" class="products-grid"></div>
+    <h2>Search Results</h2>
+    <div id="resultsContainer" class="products-grid"></div>
+    
+    <!-- Pagination -->
+    <div class="pagination-container">
+      <ul class="pagination">
+        <li class="page-item" id="prevPageBtn"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item" id="nextPageBtn"><a class="page-link" href="#">Next</a></li>
+      </ul>
+      <div id="paginationInfo" class="pagination-info"></div>
+    </div>
   </section>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="navbar.js"></script>
-  <script src="homepage.js"></script>
+  <script src="browse.js"></script>
 </body>
 </html>

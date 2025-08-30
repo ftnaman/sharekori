@@ -4,34 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>sharekori - Item Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="item.css">
+  <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo">sharekori</div>
-    <nav>
-      <a href="homepage.html">Home</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="login.html">Login</a>
-    </nav>
-  </header>
+  <!-- Navbar Container -->
+  <div id="navbar-container"></div>
 
   <!-- Item Details Section -->
   <section class="item-section">
     <div id="itemContainer" class="item-details"></div>
-
-    <!-- Rent Form -->
-    <form id="rentForm" class="rent-form">
-      <h3>Rent This Item</h3>
-      <label for="startDate">Start Date:</label>
-      <input type="date" id="startDate" required>
-      <label for="endDate">End Date:</label>
-      <input type="date" id="endDate" required>
-      <button type="submit">Rent Now</button>
-    </form>
+    <aside class="item-sidebar">
+      <div id="ratingContainer" class="rating-box"></div>
+      <div id="availability"></div>
+      <form id="rentForm" class="rent-form">
+        <h3>Book This Item</h3>
+        <label for="startDate">Start Date:</label>
+        <input type="text" id="startDate" class="datepicker" placeholder="Select start date" required>
+        <label for="endDate">End Date:</label>
+        <input type="text" id="endDate" class="datepicker" placeholder="Select end date" required>
+        <div id="totalCost" class="total-cost">Total: 0 ৳</div>
+        <button type="submit" class="btn-rent">Rent Now</button>
+      </form>
+    </aside>
+  </section>
+  
+  <!-- Item Reviews Section -->
+  <section class="reviews-section">
+    <div id="reviewsContainer" class="reviews-container">
+      <p>Loading reviews...</p>
+    </div>
   </section>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="navbar.js"></script>
   <script src="item.js"></script>
 </body>
 </html>

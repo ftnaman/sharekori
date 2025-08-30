@@ -1,0 +1,125 @@
+/* components/navbar.css */
+
+/* Sticky, clean navbar */
+.sk-navbar {
+  box-shadow: 0 2px 15px var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+/* Remove underline everywhere inside navbar */
+#navbar-container a {
+  text-decoration: none !important;
+}
+
+/* Branding */
+.sk-navbar .navbar-brand {
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.sk-navbar .navbar-brand:hover img {
+  transform: scale(1.05);
+}
+
+.sk-navbar .navbar-brand img {
+  transition: transform 0.3s ease;
+}
+
+/* Links */
+.sk-navbar .nav-link {
+  position: relative;
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  color: var(--text);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.sk-navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: var(--primary);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.sk-navbar .nav-link:hover,
+.sk-navbar .nav-link:focus,
+.sk-navbar .nav-link.active[aria-current="page"] {
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.sk-navbar .nav-link:hover::after,
+.sk-navbar .nav-link.active[aria-current="page"]::after {
+  width: 80%;
+}
+
+/* Dropdown */
+.sk-navbar .dropdown-menu {
+  border: none;
+  box-shadow: 0 8px 20px var(--shadow);
+  border-radius: 8px;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Dropdown toggle arrow */
+.sk-navbar .dropdown-toggle::after {
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+.sk-navbar .dropdown-toggle:hover::after {
+  color: var(--primary);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.sk-navbar .dropdown-item {
+  transition: all 0.2s ease;
+}
+
+.sk-navbar .dropdown-item:hover {
+  background-color: var(--background-alt);
+  color: var(--primary);
+  transform: translateX(5px);
+}
+
+/* Ensure the toggler icon is visible without navbar-light/dark classes */
+.sk-navbar .navbar-toggler {
+  border: none;
+  padding: 0.25rem;
+  transition: transform 0.3s ease;
+}
+
+.sk-navbar .navbar-toggler:hover {
+  transform: rotate(90deg);
+}
+
+.sk-navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30'
+    xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0,0.7)'
+    stroke-width='2' stroke-linecap='round' stroke-miterlimit='10'
+    d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.sk-navbar .btn {
+  transition: all 0.3s ease;
+}
+
+.sk-navbar .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--shadow);
+}

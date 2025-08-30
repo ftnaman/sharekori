@@ -3,44 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Dashboard</title>
+  <title>User Dashboard - ShareKori</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
-  <header>
-    <a href="homepage.html"><h1>sharekori</h1></a>
+  <!-- Navbar Container -->
+  <div id="navbar-container"></div>
+  
+  <!-- User Welcome -->
+  <div class="user-controls">
     <div id="welcomeMessage"></div>
-    <button id="logoutBtn">Logout</button>
-  </header>
+    <div id="userRatingContainer" class="user-rating-container">
+      <div class="user-rating">
+        <span class="rating-stars"></span>
+        <span class="rating-value"></span>
+        <span class="rating-count"></span>
+      </div>
+    </div>
+  </div>
 
+  <!-- Main Dashboard -->
   <main class="dashboard-container">
-    <!-- Add Item Form -->
+    <!-- Left Column: Form -->
     <section class="add-item">
-      <h2>Rent More Items</h2>
+      <h2>Post an Item for Rent</h2>
       <form id="addItemForm" enctype="multipart/form-data">
         <input type="text" name="title" placeholder="Item Title" required>
         <textarea name="item_description" placeholder="Item Description"></textarea>
         <input type="number" step="5" name="rent_per_day" placeholder="Rent per day (৳)" required>
         <div class="form-row">
-  <label for="item_condition">Condition:</label>
-  <select name="item_condition" id="item_condition">
-    <option value="Almost New">Almost New</option>
-    <option value="Used" selected>Used</option>
-    <option value="Refurbished">Refurbished</option>
-  </select>
-</div>
+          <label for="item_condition">Condition:</label>
+          <select name="item_condition" id="item_condition">
+            <option value="Almost New">Almost New</option>
+            <option value="Used" selected>Used</option>
+            <option value="Refurbished">Refurbished</option>
+          </select>
+        </div>
 
-<div class="form-row">
-  <label for="category">Category:</label>
-  <select name="category" id="category" required>
-    <option value="">Select Category</option>
-    <option value="Electronics">Electronics</option>
-    <option value="Equipment">Equipment</option>
-    <option value="Furniture">Furniture</option>
-    <option value="Vehicles">Vehicles</option>
-    <option value="Books & Media">Books & Media</option>
-  </select>
-</div>
+        <div class="form-row">
+          <label for="category">Category:</label>
+          <select name="category" id="category" required>
+            <option value="">Select Category</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Equipment">Equipment</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Vehicles">Vehicles</option>
+            <option value="Books & Media">Books & Media</option>
+          </select>
+        </div>
 
         <input type="text" name="location" placeholder="Location" required>
         <input type="file" name="image" accept="image/*">
@@ -48,13 +60,42 @@
       </form>
     </section>
 
-    <!-- Items List -->
-    <section class="items-list">
-      <h2>Your Items Up For Rent</h2>
-      <div id="itemsContainer"></div>
-    </section>
+    <!-- Right Column: Tabbed Listings + Rented -->
+    <div class="items-column">
+      <ul class="nav nav-tabs" id="itemsTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="listings-tab" data-bs-toggle="tab" data-bs-target="#listings" type="button" role="tab" aria-controls="listings" aria-selected="true">My Listings</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="rentals-tab" data-bs-toggle="tab" data-bs-target="#rentals" type="button" role="tab" aria-controls="rentals" aria-selected="false">My Rentals</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="requests-tab" data-bs-toggle="tab" data-bs-target="#requests" type="button" role="tab" aria-controls="requests" aria-selected="false">Rental Requests</button>
+        </li>
+      </ul>
+      
+      <div class="tab-content" id="itemsTabContent">
+        <div class="tab-pane fade show active" id="listings" role="tabpanel" aria-labelledby="listings-tab">
+          <section class="items-list">
+            <div id="itemsContainer"></div>
+          </section>
+        </div>
+        <div class="tab-pane fade" id="rentals" role="tabpanel" aria-labelledby="rentals-tab">
+          <section class="rented-items">
+            <div id="rentedItemsContainer"></div>
+          </section>
+        </div>
+        <div class="tab-pane fade" id="requests" role="tabpanel" aria-labelledby="requests-tab">
+          <section class="rental-requests">
+            <div id="rentalRequestsContainer"></div>
+          </section>
+        </div>
+      </div>
+    </div>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="navbar.js"></script>
   <script src="dashboard.js"></script>
 </body>
 </html>

@@ -1,10 +1,11 @@
 /* General Page */
 body {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   margin: 0;
-  background-color: #fff;
-  color: #000;
+  background: linear-gradient(135deg, var(--background-alt) 0%, var(--background) 100%);
+  color: var(--text);
   min-height: 100vh;
+  /* padding-top: 80px; Add space for fixed navbar */
 }
 
 header {
@@ -12,7 +13,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
 }
 
 header .logo {
@@ -24,49 +26,170 @@ header .logo {
 header nav a {
   margin-left: 1rem;
   text-decoration: none;
-  color: #333;
+  color: var(--text);
 }
 
 /* Item Section */
 .item-section {
   max-width: 1000px;
-  margin: 120px auto 50px auto;
+  margin: 2rem auto;
   padding: 0 1rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; /* left details | right rating+booking */
   gap: 30px;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 /* Left: Item Image */
 .item-details {
   flex: 1;
   min-width: 300px;
-  background: #fff;
+  background: var(--background);
   padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px var(--shadow);
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid var(--border);
 }
 
 .item-image img {
   width: 100%;
-  max-width: 500px;
-  height: 300px;
-  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
   border-radius: 12px;
   margin-bottom: 15px;
 }
 
 /* Right: Info + Rent Form */
 .item-right {
-  flex: 1;
-  min-width: 300px;
+  display: none; /* no longer used */
+}
+.item-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
+}
+
+/* Reviews Section */
+.reviews-section {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 1rem;
+}
+
+.reviews-container {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px var(--shadow);
+  padding: 20px;
+}
+
+.review {
+  border-bottom: 1px solid var(--border);
+  padding: 15px 0;
+}
+
+.review:last-child {
+  border-bottom: none;
+}
+
+.review-stars {
+  color: #ffc107;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.review-comment {
+  line-height: 1.5;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.review-author {
+  color: var(--text-light);
+  font-size: 14px;
+  font-style: italic;
+}
+
+.rating-box, .rating-input-box {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px var(--shadow);
+  padding: 16px;
+}
+
+.rating-input-box h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.rating-stars {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.rating-stars .star {
+  font-size: 24px;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.2s;
+}
+
+.rating-stars .star.active {
+  color: #ffb700;
+}
+
+.rating-stars .rating-value {
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#ratingComment {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  resize: vertical;
+  min-height: 60px;
+  font-family: inherit;
+}
+
+.btn-submit-rating {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.btn-submit-rating:hover {
+  background-color: var(--primary-dark);
+}
+
+.rating-status {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.rating-status.success {
+  color: #28a745;
+}
+
+.rating-status.error {
+  color: #dc3545;
 }
 
 /* Item Info */
@@ -90,8 +213,8 @@ header nav a {
 }
 
 .item-rent {
-  background: #e6f7ff;
-  color: #0077b6;
+  background: var(--primary);
+  color: white;
   padding: 6px 12px;
   border-radius: 8px;
   font-weight: bold;
@@ -100,8 +223,8 @@ header nav a {
 }
 
 .item-condition {
-  background: #fef4e7;
-  color: #e67e22;
+  background: var(--secondary);
+  color: white;
   padding: 6px 12px;
   border-radius: 8px;
   font-weight: bold;
@@ -112,13 +235,43 @@ header nav a {
 /* Rent Form */
 .rent-form {
   width: 100%;
-  background: #f7f7f7;
+  background: var(--background);
   padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px var(--shadow);
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border: 1px solid var(--border);
+}
+
+.rent-form .datepicker {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.rent-form .total-cost {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #0d6efd;
+}
+
+.rent-form .btn-rent {
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.rent-form .btn-rent:hover {
+  background-color: #0b5ed7;
 }
 
 .rent-form h3 {
@@ -133,13 +286,15 @@ header nav a {
 .rent-form input {
   padding: 8px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--text);
 }
 
 .rent-form button {
   padding: 10px;
-  background-color: #0077b6;
-  color: #fff;
+  background-color: var(--primary);
+  color: white;
   border: none;
   border-radius: 6px;
   font-weight: bold;
@@ -148,13 +303,65 @@ header nav a {
 }
 
 .rent-form button:hover {
-  background-color: #005f8a;
+  filter: brightness(0.95);
 }
+
+/* Calendar */
+.calendar {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px var(--shadow);
+  padding: 16px;
+}
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+.cal-cell {
+  padding: 10px 0;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.cal-cell.free {
+  background: #d1fae5; /* light green */
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+.cal-cell.booked {
+  background: #fee2e2; /* light red */
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+.legend {
+  margin-top: 10px;
+  color: var(--text-light);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.legend-free { color: #10b981; }
+.legend-booked { color: #ef4444; }
+
+
 
 /* Responsive: stack on smaller screens */
 @media screen and (max-width: 800px) {
   .item-section {
+    display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+  }
+  
+  .item-image img {
+    max-height: 400px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .item-image img {
+    max-height: 300px;
   }
 }

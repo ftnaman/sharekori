@@ -1,9 +1,57 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const BASE_URL = `${window.location.protocol}//${window.location.hostname}:5000`;
-  const featuredContainer = document.getElementById("featuredContainer");
+  const host = window.location.hostname || 'localhost';
+  const protocol = window.location.protocol.startsWith('http') ? window.location.protocol : 'http:';
+  const BASE_URL = `${protocol}//${host}:5000`;
   const searchForm = document.getElementById("searchForm");
+  
+  // Typewriter effect
+  const typewriterElement = document.getElementById("typewriter");
+  const phrases = [
+    "Find Items to Rent",
+    "Save Money, Rent Instead",
+    "Discover Local Rentals",
+    "Rent What You Need",
+    "Share Your Items"
+  ];
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let typingSpeed = 100;
+  
+  function typeWriter() {
+    const currentPhrase = phrases[phraseIndex];
+    
+    if (isDeleting) {
+      // Deleting text
+      typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+      charIndex--;
+      typingSpeed = 50; // Faster when deleting
+    } else {
+      // Typing text
+      typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+      charIndex++;
+      typingSpeed = 100; // Normal speed when typing
+    }
+    
+    // If completed typing the phrase
+    if (!isDeleting && charIndex === currentPhrase.length) {
+      isDeleting = true;
+      typingSpeed = 1500; // Pause at the end
+    }
+    
+    // If completed deleting the phrase
+    if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      typingSpeed = 500; // Pause before typing next phrase
+    }
+    
+    setTimeout(typeWriter, typingSpeed);
+  }
+  
+  // Start the typewriter effect
+  typeWriter();
 
-  // Helper: render items
   function renderItems(items) {
     featuredContainer.innerHTML = "";
     if (!items || items.length === 0) {
@@ -17,17 +65,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       div.innerHTML = `
         <div class="item-image">
-          <img src="${item.image_url ? BASE_URL + item.image_url : 'images/placeholder.png'}" alt="${item.title}">
+          <img src="${BASE_URL}/api/items/${item.id}/image" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns='+'\''+\'http://www.w3.org/2000/svg'+'\''+\' width='+'\''+\'400'+'\''+\' height='+'\''+\'300'+'\''+\'><rect width='+'\''+\'100%25'+'\''+\' height='+'\''+\'100%25'+'\''+\' fill='+'\''+\'%23e5e7eb'+'\''+\'/><text x='+'\''+\'50%25'+'\''+\' y='+'\''+\'50%25'+'\''+\' dominant-baseline='+'\''+\'middle'+'\''+\' text-anchor='+'\''+\'middle'+'\''+\' fill='+'\''+\'%236b7280'+'\''+\' font-size='+'\''+\'20'+'\''+\'>No Image</text></svg>'" alt="${item.title}">
         </div>
         <div class="item-info">
           <h4 class="item-title">${item.title}</h4>
           <div class="item-meta">
-            <div class="item-rent">
-              ${item.rent_per_day ? item.rent_per_day + " ৳/day" : "Not specified"}
-            </div>
-            <div class="item-condition">
-              ${item.item_condition || "Not specified"}
-            </div>
+            <div class="item-rent">${item.rent_per_day ? item.rent_per_day + " ৳/day" : "Not specified"}</div>
+            <div class="item-condition">${item.item_condition || "Not specified"}</div>
           </div>
         </div>
       `;
@@ -40,9 +84,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // ----------------------
-  // Fetch featured products
-  // ----------------------
   async function fetchFeaturedProducts() {
     try {
       const res = await fetch(`${BASE_URL}/api/items/featured`);
@@ -52,76 +93,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (err) {
       console.error(err);
       featuredContainer.innerHTML = "<p>Failed to load featured products.</p>";
+    } finally {
+      // ✅ Hide preloader after load attempt
+      document.querySelector(".preloader-wrapper").style.display = "none";
     }
   }
 
-  // ----------------------
-  // Search form
-  // ----------------------
   searchForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const keyword = document.getElementById("searchKeyword").value;
     const category = document.getElementById("searchCategory").value;
-    const condition = document.getElementById("searchCondition").value;
 
     try {
-      const res = await fetch(
-        `${BASE_URL}/api/items/search?keyword=${encodeURIComponent(keyword)}&category=${encodeURIComponent(category)}&condition=${encodeURIComponent(condition)}`
-      );
-      if (!res.ok) throw new Error("Search failed");
-      const items = await res.json();
-      renderItems(items);
+      const queryParams = new URLSearchParams();
+      if (keyword) queryParams.append('keyword', keyword);
+      if (category) queryParams.append('category', category);
+      
+      // Redirect to browse page with search parameters
+      window.location.href = `browse.html?${queryParams.toString()}`;
     } catch (err) {
       console.error(err);
       featuredContainer.innerHTML = "<p>Search failed.</p>";
     }
   });
 
-  // Initial load
   fetchFeaturedProducts();
 });
-
-const lines = [
-  "Find Items to Rent",
-  "Search for Electronics",
-  "Looking for Vehicles to Rent?",
-  "Rent Tools Easily Anytime",
-  "Discover Affordable Rentals Near You"
-];
-
-let currentLine = 0;
-let currentChar = 0;
-let isDeleting = false;
-const speed = 100;   // typing speed
-const delay = 1500;  // pause before deleting
-const target = document.getElementById("typewriter");
-
-function typeWriter() {
-  const line = lines[currentLine];
-
-  if (!isDeleting) {
-    // typing forward
-    target.textContent = line.substring(0, currentChar + 1);
-    currentChar++;
-
-    if (currentChar === line.length) {
-      isDeleting = true;
-      setTimeout(typeWriter, delay);
-      return;
-    }
-  } else {
-    // deleting backwards
-    target.textContent = line.substring(0, currentChar - 1);
-    currentChar--;
-
-    if (currentChar === 0) {
-      isDeleting = false;
-      currentLine = (currentLine + 1) % lines.length;
-    }
-  }
-
-  setTimeout(typeWriter, isDeleting ? speed / 2 : speed);
-}
-
-// start the animation
-typeWriter();
