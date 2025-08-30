@@ -205,6 +205,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Rent Now
   rentForm?.addEventListener("submit", async (e) => {
     e.preventDefault();
+    
+    // Check if user is logged in
+    if (!token) {
+      alert("Please log in to rent items");
+      window.location.href = "login.html";
+      return;
+    }
+    
     const startDate = startDateInput.value;
     const endDate = endDateInput.value;
 
@@ -214,6 +222,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
+      console.log('Creating rental request for item:', itemId, 'with dates:', startDate, 'to', endDate);
       const res = await fetch(`${BASE_URL}/api/rentals/`, {
         method: "POST",
         headers: {
@@ -227,7 +236,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         })
       });
 
+      console.log('Rental request response status:', res.status);
       const data = await res.json();
+      console.log('Rental request response data:', data);
       if (res.ok) {
         // After rental creation, trigger demo payment
         try {

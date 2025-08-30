@@ -249,13 +249,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Fetch rental requests
   async function fetchRentalRequests() {
     try {
-      const res = await fetch(`${BASE_URL}/api/rentals/my-requests`, {
+      console.log('Fetching rental requests...');
+      const res = await fetch(`${BASE_URL}/api/rentals/item-requests`, {
         headers: { Authorization: `Bearer ${token}` }
       });
+      console.log('Response status:', res.status);
       if (!res.ok) throw new Error("Failed to fetch rental requests");
       const requests = await res.json();
+      console.log('Rental requests data:', requests);
 
       const rentalRequestsContainer = document.getElementById("rentalRequestsContainer");
+      console.log('Rental requests container:', rentalRequestsContainer);
+      if (!rentalRequestsContainer) {
+        console.error('Rental requests container not found!');
+        return;
+      }
       rentalRequestsContainer.innerHTML = "";
 
       if (requests.length === 0) {
@@ -264,9 +272,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       requests.forEach(request => {
+        console.log('Processing request:', request);
         const div = document.createElement("div");
         div.classList.add("request-card");
-        const deliveredStatus = request.delivered_status ? 
+        const isDelivered = request.delivered_status === 1 || request.delivered_status === true;
+        const deliveredStatus = isDelivered ? 
           '<span class="status-delivered">✓ Delivered</span>' : 
           '<span class="status-pending">⏳ Pending</span>';
         
@@ -277,11 +287,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             <p>${request.item_description || "No description"}</p>
             <p>Rent: ${request.rent_per_day} ৳/day</p>
             <p>Requested: ${new Date(request.start_date).toLocaleDateString()} → ${new Date(request.end_date).toLocaleDateString()}</p>
-            <p>Owner: ${request.owner_name}</p>
+            <p>Renter: ${request.renter_name}</p>
             <p>Contact Phone: ${request.renter_phone || 'Not provided'}</p>
             <div class="request-status">
               ${deliveredStatus}
-              ${!request.delivered_status ? 
+              ${!isDelivered ? 
                 `<button class="mark-delivered-btn" data-request="${request.request_id}">Mark as Delivered</button>` : 
                 ''
               }
@@ -329,4 +339,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   fetchUserItems();
   fetchRentedItems();
   fetchRentalRequests();
+  
+  // Add event listener for tab changes to ensure rental requests are loaded when tab is clicked
+  document.addEventListener('shown.bs.tab', function (event) {
+    if (event.target.id === 'requests-tab') {
+      console.log('Rental requests tab clicked, refreshing data...');
+      fetchRentalRequests();
+    }
+  });
 });
