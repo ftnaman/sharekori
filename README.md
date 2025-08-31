@@ -138,16 +138,17 @@ sharekori/
    # Using Live Server (VS Code extension)
    ```
 
+
 ## Database Schema
 
 ### Users Table
 ```sql
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(20)
+    phone_number VARCHAR(20) DEFAULT '+880-XXX-XXXXXX'
 );
 ```
 
@@ -155,15 +156,14 @@ CREATE TABLE users (
 ```sql
 CREATE TABLE items (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
+    title VARCHAR(100) NOT NULL,
     item_description TEXT,
     rent_per_day DECIMAL(10,2) NOT NULL,
-    item_condition ENUM('Almost New', 'Used', 'Refurbished') NOT NULL,
-    category VARCHAR(100) NOT NULL,
-    location VARCHAR(255) NOT NULL,
+    item_condition ENUM('Almost New','Used','Refurbished') NOT NULL DEFAULT 'Used',
+    category VARCHAR(50) NOT NULL,
+    location VARCHAR(100),
     image_url VARCHAR(255),
-    owner_id INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    owner_id INT,
     FOREIGN KEY (owner_id) REFERENCES users(id)
 );
 ```
@@ -182,31 +182,50 @@ CREATE TABLE rental_requests (
 );
 ```
 
+### Payments Table
+```sql
+CREATE TABLE payments (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    rental_request_id INT NOT NULL,
+    payer_id INT NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    payment_method VARCHAR(50),
+    status VARCHAR(20) DEFAULT 'pending',
+    transaction_id VARCHAR(100),
+    FOREIGN KEY (rental_request_id) REFERENCES rental_requests(id) ON DELETE CASCADE,
+    FOREIGN KEY (payer_id) REFERENCES users(id) ON DELETE CASCADE
+);
+```
+
 ### Reviews Table
 ```sql
 CREATE TABLE reviews (
     id INT AUTO_INCREMENT PRIMARY KEY,
     item_id INT NOT NULL,
-    reviewer_id INT NOT NULL,
-    stars INT NOT NULL CHECK (stars >= 1 AND stars <= 5),
+    user_id INT NOT NULL,
+    rating INT CHECK (rating BETWEEN 1 AND 5),
     comment TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (item_id) REFERENCES items(id),
-    FOREIGN KEY (reviewer_id) REFERENCES users(id)
+    FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 ```
 
-### Ratings Table
+### User Ratings Table
 ```sql
-CREATE TABLE ratings (
+CREATE TABLE user_ratings (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    owner_id INT NOT NULL,
-    rater_id INT NOT NULL,
-    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    rated_user_id INT NOT NULL,
+    rater_user_id INT NOT NULL,
+    rental_id INT NOT NULL,
+    rating TINYINT CHECK (rating BETWEEN 1 AND 5),
     comment TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (owner_id) REFERENCES users(id),
-    FOREIGN KEY (rater_id) REFERENCES users(id)
+    UNIQUE KEY (rater_user_id, rental_id),
+    FOREIGN KEY (rated_user_id) REFERENCES users(id),
+    FOREIGN KEY (rater_user_id) REFERENCES users(id),
+    FOREIGN KEY (rental_id) REFERENCES rental_requests(id)
 );
 
 ```
