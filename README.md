@@ -141,6 +141,8 @@ sharekori/
 
 ## Database Schema
 
+<img width="960" height="507" alt="er_diagram" src="https://github.com/user-attachments/assets/c8da84c5-7642-49d6-86f6-ac6931bdd6a7" />
+
 ### Users Table
 ```sql
 CREATE TABLE users (
@@ -229,6 +231,7 @@ CREATE TABLE user_ratings (
 );
 
 ```
+
 ## API Documentation
 
 ### Authentication Endpoints
